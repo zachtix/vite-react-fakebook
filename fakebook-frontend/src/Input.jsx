@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import PropTypes from 'prop-types'
-import {Button, Form, Card, Container} from "react-bootstrap"
+import {Form, Card, Container} from "react-bootstrap"
 
 function Input({addPost}) {
   const [text, setText] = useState('')
@@ -15,13 +15,6 @@ function Input({addPost}) {
       setText('');
     }
   }
-  // function onKeyDown(event) {
-  //   const newPost = event.target.value;
-  //   if (event.key === 'Enter' && newPost) {
-  //     addPost(newPost);
-  //     setInput('');
-  //   }
-  // }
 
   return(
     <Container className="mt-3 d-flex justify-content-center">

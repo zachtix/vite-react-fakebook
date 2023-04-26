@@ -1,28 +1,30 @@
 import React, {useState} from 'react'
 import PropTypes from 'prop-types';
-import {CloseButton , Card, Container} from "react-bootstrap"
+import {Button, CloseButton , Card, Container, OverlayTrigger , Tooltip } from "react-bootstrap"
 
-function Post({id, title, removePost}) {
+function Post({id, text, like, removePost, updateLike}) {
+  // console.log("Child Rendered");
+  const [countLike, setCountLike] = useState(like)
+  function addLike() {
+    setCountLike(countLike+1)
+    updateLike(id)
+  }
   return (
     <Container className="mt-3 d-flex justify-content-center">
-      {/* <div className='Post' key={id}>
-        <button className='Post__delete' onClick={() => removePost}>X</button>
-        <div className='Post__title'>{title}</div>
-        <img 
-          src='https://placehold.jp/300x150.png' 
-          className='Post__image'
-        />
-      </div> */}
-      <Card style={{width:'500px'}}>
-        {/* <CloseButton onClick={() => removePost} /> */}
+      <Card style={{width:'560px'}}>
         <Container className='mt-2 d-flex justify-content-between'>
-          <Card.Title>Atthawut Smith</Card.Title>
-          <CloseButton onClick={() => removePost(id)} />
+          <Card.Title>Mark Suckerberg</Card.Title>
+          <OverlayTrigger overlay={<Tooltip id="tooltip-disabled">Delete Post</Tooltip>} placement="bottom">
+            <span className="d-inline-block">
+              <CloseButton onClick={() => removePost(id)} />
+            </span>
+          </OverlayTrigger>
         </Container>
         <Container className='mb-1'>
-          <Card.Text>{title}</Card.Text>
+          <Card.Text>{text}</Card.Text>
         </Container>
-        <Card.Img src='https://placehold.jp/500x300.png' />
+        <Card.Img src='https://placehold.jp/500x200.png' />
+        <Button variant="outline-primary" className='m-3 p-0' style={{width:'70px'}} onClick={addLike}>Like {countLike}</Button>
       </Card>
     </Container>
   )
@@ -30,8 +32,9 @@ function Post({id, title, removePost}) {
 
 Post.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  removePost: PropTypes.func.isRequired
+  text: PropTypes.string.isRequired,
+  removePost: PropTypes.func.isRequired,
+  updateLike: PropTypes.func.isRequired
 };
 
 export default Post
