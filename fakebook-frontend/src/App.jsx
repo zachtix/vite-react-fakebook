@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import {Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import {Container, Navbar} from 'react-bootstrap'
 
 import Input from "./Input"
 import Post from "./Post"
